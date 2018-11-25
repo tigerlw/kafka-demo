@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ucloudlink.kafka;
+package com.camp.kafka;
 
 import kafka.utils.ShutdownableThread;
 

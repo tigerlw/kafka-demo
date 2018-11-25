@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ucloudlink.kafka;
+package com.camp.kafka;
 
 import kafka.api.FetchRequest;
 import kafka.api.FetchRequestBuilder;
@@ -71,7 +71,7 @@ public class SimpleConsumerDemo {
         printMessages(fetchResponse.messageSet(KafkaProperties.TOPIC2, 0));
 
         System.out.println("Testing single multi-fetch");
-        Map<String, List<Integer>> topicMap = new HashMap<>();
+        Map<String, List<Integer>> topicMap = new HashMap<String, List<Integer>>();
         topicMap.put(KafkaProperties.TOPIC2, Collections.singletonList(0));
         topicMap.put(KafkaProperties.TOPIC3, Collections.singletonList(0));
         req = new FetchRequestBuilder()

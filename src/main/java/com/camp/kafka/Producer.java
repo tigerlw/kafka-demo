@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ucloudlink.kafka;
+package com.camp.kafka;
 
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -35,7 +35,7 @@ public class Producer extends Thread {
         props.put("client.id", "DemoProducer");
         props.put("key.serializer", "org.apache.kafka.common.serialization.IntegerSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        producer = new KafkaProducer<>(props);
+        producer = new KafkaProducer<Integer,String>(props);
         this.topic = topic;
         this.isAsync = isAsync;
     }
@@ -46,16 +46,16 @@ public class Producer extends Thread {
             String messageStr = "Message_" + messageNo;
             long startTime = System.currentTimeMillis();
             if (isAsync) { // Send asynchronously
-                producer.send(new ProducerRecord<>(topic,
+                producer.send(new ProducerRecord<Integer,String>(topic,
                     messageNo,
                     messageStr), new DemoCallBack(startTime, messageNo, messageStr));
             } else { // Send synchronously
                 try {
-                    producer.send(new ProducerRecord<>(topic,
+                    producer.send(new ProducerRecord<Integer,String>(topic,
                         messageNo,
                         messageStr)).get();
                     System.out.println("Sent message: (" + messageNo + ", " + messageStr + ")");
-                } catch (InterruptedException | ExecutionException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

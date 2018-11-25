@@ -1,4 +1,4 @@
-package com.ucloudlink.kafka;
+package com.camp.kafka;
 
 import java.util.Collections;
 import java.util.HashMap;
